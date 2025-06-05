@@ -1,0 +1,173 @@
+/* Затемнение + блюр, только в пределах mobile-frame */
+
+.popup {
+  position: absolute;
+  top: 56px;
+  left: 0;
+  width: 100%;
+  height: calc(100% - 120px); /* top-bar + bottom-nav space */
+  z-index: 900;
+  background: rgba(0, 0, 0, 0.425);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  box-sizing: border-box;
+}
+
+/* 📦 Контент модального окна(размеры) */
+.popup-content {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  width: 100%;
+  max-width: 380px;
+  margin: 0 auto;
+  padding: 20px 10px 80px;
+
+  overflow-y: auto;
+  box-sizing: border-box;
+  z-index: 1;
+}
+
+/* Когда popup открыт — скрываем театр */
+.popup-visible .theater-wrapper {
+  display: none;
+}
+
+/* 🧾 Заголовок */
+.repertoire-list h3 {
+  margin: 10px 0 15px;
+  font-size: 20px;
+  color: #ffffff;
+  text-align: center;
+}
+
+/* Расстояние между Спектаклями*/
+.play-card {
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  margin-bottom: 16px;
+}
+
+/* Изображения Спектаклей*/
+.play-card img {
+  width: 100%;
+  height: auto;            /* ✅ Автоматическая высота */
+  object-fit: contain;     /* 🔥 Весь кадр помещается */
+  display: block;
+  border-bottom: 1px solid #eee; /* по желанию */
+}
+
+/* Заголовок спектакля */
+.play-title {
+  background: #ffedca;
+  color: #0077cc;
+  font-weight: bold;
+  font-size: 18px;
+  padding: 6px 10px;
+  text-align: center;
+}
+
+/* Нижняя подложка где кнопка Поставить */
+.play-meta {
+  background: #ffedca;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 10px;
+  font-size: 13px;
+}
+
+/* ✅ Кнопка "Поставить" — тоже компактнее */
+.play-btn {
+  background: #50c878;
+  border: none;
+  border-radius: 18px;
+  padding: 8px 10px;
+  font-size: 12px;
+  color: white;
+  font-weight: bold;
+  box-shadow: 0 2px 0 #3e9e5f;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.play-btn:hover {
+  background: #45b06b;
+}
+
+/* ----------------- Пагинация в модальном окне ----------------- */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  margin: 12px 0;
+}
+
+.pagination button {
+  background: linear-gradient(145deg, #fff3a7, #ffe067);
+  border: none;
+  border-radius: 12px;
+  padding: 8px 16px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pagination button:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(145deg, #ffe067, #fff3a7);
+}
+
+/* Стилизация иконок-стрелок для пагинации */
+.pagination button .arrow {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  font-size: 1.2em;
+  vertical-align: middle;
+  pointer-events: none;
+}
+
+/* 🔴 Кнопка закрытия — крестик в углу */
+.popup .close-popup {
+  position: absolute;
+  top: 18px;
+  right: 24px;
+  background: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  z-index: 2;
+}
+
+.popup .close-popup:hover {
+  background: #c0392b;
+}
+
+/* Скрытие popup */
+.popup.hidden {
+  display: none !important;
+}
+
+

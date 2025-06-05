@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ru">
+  
+<head>
+  <meta charset="UTF-8">
+  <title>Театр им. Тебя</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Стили по блокам -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/topbar.css">
+  <link rel="stylesheet" href="css/navigation.css">
+  <link rel="stylesheet" href="css/theater.css">
+  <link rel="stylesheet" href="css/popup.css">
+  <link rel="stylesheet" href="css/active.css"> <!-- вот это -->
+  <style>
+    .theater-wrapper {
+      position: relative;
+      z-index: 1;
+    }
+
+    .theater-wrapper::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      bottom: -100vh; /* растягивается до низа */
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), transparent);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Убедимся, что overflow не скрывает тень */
+    .theater-shadow-wrapper {
+      overflow: visible;
+    }
+
+    #theater {
+      overflow: visible;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="mobile-frame">
+
+   <!-- 🟦 ВЕРХНЯЯ ПАНЕЛЬ -->
+<header class="top-bar">
+  <div class="top-row">
+    <div class="level">🎭 Уровень <span id="topbar-level">1</span></div>
+    <div class="morale-indicator">
+      <div id="morale-text">100%</div>
+      <div id="morale-face">😐</div>
+    </div>
+    <div class="money"><span id="topbar-coins">0</span></div>
+  </div>
+  <div class="xp-bar">
+    <div class="xp-fill" id="topbar-xp-bar"></div>
+  </div>
+</header>
+
+<!-- 🔄 СКРОЛЛИРУЕМАЯ ЗОНА -->
+<div class="scroll-area">
+
+  <main class="main-area">
+
+    <div class="theater-info-container">
+<div class="side-panel left-panel">
+  <img src="img/icons/coin.png" class="left-panel-icon">
+  <div class="left-panel-value" id="morale-multiplier">x1.90</div>
+</div>
+  <div class="side-panel right-panel"></div>
+</div>
+
+<div class="theater-shadow-wrapper">
+  <div id="theater">
+    <div class="theater-wrapper">
+      <img src="img/theater/theater_lvl1.png" alt="театр" class="theater-img">
+      <button class="play-button" onclick="togglePopup()">
+        <img src="img/play.png" class="play-button-animated" alt="PLAY">
+      </button>
+    </div>
+  </div>
+</div>
+
+    <div id="active-plays-wrapper">
+      <div id="active-plays">
+        <!-- Пример карточки спектакля с наградой (заменить генерацией из JS) -->
+        <div class="play-card">
+          <div class="play-image-wrapper">
+            <img src="img/plays/comedy.png" class="play-image" alt="Комедия">
+            <div class="reward-overlay hidden" id="reward-overlay-0">
+              <div class="reward-content">
+                +240 💰<br>+25 ✨
+              </div>
+            </div>
+          </div>
+          <div class="play-info">
+            <div class="play-title">КОМЕДИЯ</div>
+            <button class="collect-btn" onclick="collectPlayReward(0)">💰 Собрать</button>
+          </div>
+        </div>
+        <!-- /пример -->
+      </div>
+      <div id="active-plays-controls">
+    </div>
+
+  </main>
+
+</div>
+
+    <!-- 🔽 НИЖНЕЕ МЕНЮ -->
+<nav class="bottom-nav">
+  <a href="shop.html">🏬</a>
+  <a href="#">📝</a>
+  <a href="index.html" class="home">🏠</a>
+  <a href="#">🏛</a>
+  <a href="#">💬</a>
+</nav>
+
+    <!-- 🧾 ВСПЛЫВАЮЩЕЕ ОКНО (вне других блоков!) -->
+   <div id="repertoire-popup" class="popup hidden">
+     <button class="close-popup" onclick="togglePopup()">✕</button>
+     <div class="popup-content repertoire-list">
+        <h3>Выберите постановку</h3>
+     <div id="play-container"></div>
+
+<div class="pagination">
+  <button class="pagination-btn prev" onclick="prevPage()">⟵</button>
+  <span id="page-indicator">1 / 1</span>
+  <button class="pagination-btn next" onclick="nextPage()">⟶</button>
+</div>
+
+</div> <!-- конец .popup-content -->
+</div> <!-- конец .popup -->
+
+<!-- 📜 Скрипты -->
+<script src="js/data.js" defer></script>
+<script src="js/repertoire.js" defer></script>
+<script src="js/script.js" defer></script>
+
+</body>
+</html>

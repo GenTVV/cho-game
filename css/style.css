@@ -1,0 +1,179 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+  height: 100vh;
+  background: url('../img/bg_garden.png') no-repeat center center;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  overflow: auto; /* ✅ разрешаем scroll */
+}
+
+.mobile-frame {
+  max-width: 420px;
+  width: 100%;
+  height: 100vh;
+  margin: 0 auto;
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+
+  backdrop-filter: blur(4px); /* 👈🏼 Меньше размытие */
+  background-color: rgba(255, 255, 255, 0.03); /* Едва заметная заливка */
+  
+  box-shadow: 
+    0 0 20px rgba(0, 0, 0, 0.233), /* 👈🏼 Внешняя мягкая тень */
+    0 0 40px rgba(0, 0, 0, 0.205); /* Ещё одна — для более плавного рассеивания */
+
+  border-radius: 0; /* если был скруглён — можно убрать */
+}
+
+.mobile-frame::before {
+  content: "";
+  position: absolute;
+  top: 58px;               /* под верхней панелью */
+  left: 0;
+  right: 0;
+  bottom: 60px;            /* над нижней навигацией */
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.24), transparent 200px, rgba(0, 0, 0, 0.05) 80%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.mobile-frame.popup-visible #active-plays-wrapper {
+  display: none !important;
+}
+
+.scroll-area {
+  position: relative;
+  flex-grow: 1;
+  overflow-y: auto;
+  min-height: calc(100vh - 240px); /* Подгони под реальную высоту topbar + navbar */
+  max-height: calc(100vh - 160px); /* Чтобы не было избыточной прокрутки */
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;        /* Firefox */
+  -ms-overflow-style: none;     /* Internet Explorer 10+ */
+}
+
+.scroll-area::-webkit-scrollbar {
+  display: none;                /* Safari и Chrome */
+}
+
+.morale-indicator {
+  position: absolute;
+  top: 6px;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  z-index: 10;
+}
+
+#morale-text {
+  font-size: 15px;
+  font-weight: bold;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+#morale-face {
+  font-size: 22px;
+}
+
+.no-plays-message {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeInUp 0.8s ease;
+  padding: 20px;
+  z-index: 3;
+  text-align: center;
+  color: #333;
+}
+
+.no-plays-inner {
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.no-plays-icon {
+  font-size: 40px;
+  margin-bottom: 8px;
+}
+
+.no-plays-text {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.no-plays-subtext {
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.play-img-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Затемнение на всю картинку */
+.play-img-wrapper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5); /* Тёмное полупрозрачное */
+  z-index: 4;
+  pointer-events: none;
+  border-radius: 20px;
+}
+
+/* Блок с наградой */
+.reward-float {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  text-align: center;
+  pointer-events: none;
+  width: 100%;              /* Добавь это */
+  max-width: 100%;          /* И это */
+  display: flex;
+  flex-direction: column;
+  align-items: center;      /* Центровка содержимого */
+  justify-content: center;
+}
+
+/* Строки внутри блока */
+.reward-float div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin: 3px 0;
+  width: 100%;
+}

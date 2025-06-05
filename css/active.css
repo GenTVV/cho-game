@@ -1,0 +1,199 @@
+/* Внешняя карточка спектакля */
+.active-play-card {
+  display: flex;                           /* Располагаем картинку и текст в ряд */
+  align-items: stretch; /* выравнивает дочерние блоки по высоте */
+  background: #fef1a0;                     /* Цвет фона карточки (кремовый) */
+  border-radius: 26px;                     /* Закругляем углы всей карточки */
+  padding: 13px;                           /* Внутренние отступы по краям */
+  width: 100%;                /* Чуть уже, чтобы не прилипало к краям */
+  max-width: 380px;                         /* Не шире доступной зоны */
+  box-shadow: 0 6px 14px rgba(0,0,0,0.15); /* Мягкая внешняя тень */
+  font-family: 'Arial Rounded MT Bold', sans-serif; /* Дружелюбный шрифт */
+  margin-bottom: 0px;                     /* Отступ снизу между карточками */
+  gap: 15px;                               /* Отступ между картинкой и текстом */
+  height: 110px;                           /* Высота всей карточки */
+  box-sizing: border-box;                  /* Учитываем padding внутри ширины */
+  opacity: 1;
+  transform: none;
+  z-index: 5;
+}
+
+#active-plays {
+  display: flex;
+  flex-direction: column;      /* чтобы карточки шли вертикально */
+  align-items: center;         /* 🟢 центрируем по горизонтали */
+  justify-content: flex-start;
+  gap: 12px;
+  margin-top: 16px;            /* 🟢 отступ от театра */
+  padding: 0 10px;
+  padding-bottom: 30px;
+}
+
+.active-play-card.animate-in {
+  animation: zoomFadeIn 0.3s ease-out;
+}
+
+/* Картинка спектакля */
+.active-play-card img {
+  width: 40vw;         /* ширина по ширине экрана */
+  height: 100%;         /* растянуть картинку по высоте карточки */
+  border-radius: 20px;                     /* Закруглённые углы */
+  object-fit: cover;                       /* Обрезка под нужные размеры */
+  margin-left: 0px;                       /* Чуть “вылезает” влево, эффект выхода */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Тень у самой картинки */
+  max-width: 140px;    /* но не больше 140px */
+  min-width: 100px;    /* и не меньше 100px */
+}
+
+/* Блок с текстом */
+.active-play-card .info {
+  display: flex;                           /* Колонка внутри */
+  flex-direction: column;
+  justify-content: center;                /* Центрируем по вертикали */
+  flex-grow: 1;                            /* Занимает всё оставшееся пространство */
+  height: 90px;
+  padding-right: 6px;                      /* Немного отступа справа */
+  padding-left: 3px;                       /* И слева, чтобы не слипалось */
+}
+
+/* Название спектакля (в info) */
+.active-play-card .info div:first-child {
+  font-size: 20px;                         /* Крупный текст */
+  font-weight: bold;
+  color: #1a47a1;                          /* Синий оттенок */
+  margin-bottom: 8px;                      /* Отступ от таймера */
+}
+
+/* Таймер спектакля (в info) */
+.active-play-card .info div:last-child {
+  font-size: 18px;
+  color: #393939;                          /* Тёмно-серый */
+}
+
+@media (max-width: 370px) {
+  .active-play-card {
+    flex-direction: row;
+    align-items: center;
+    padding: 6px;
+  }
+
+  .active-play-card img {
+    height: 100%;             /* сохраняем высоту карточки */
+    width: auto;              /* ширина будет по содержимому */
+    max-width: 100px;         /* ограничим максимум */
+    min-width: 60px;
+    object-fit: cover;        /* обрезка по ширине */
+    border-radius: 20px;
+    margin-left: 7px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  }
+
+  .info {
+    flex: 1;
+    padding-left: 8px;
+  }
+
+  .info-box {
+    font-size: 14px;
+    line-height: 1.2;
+  }
+
+  .info-box div {
+    margin: 2px 0;
+    word-break: break-word;
+  }
+
+  .collect-btn {
+    font-size: 13px;
+    padding: 5px 8px;
+  }
+}
+
+
+/* Таймер внутри подложки */
+.info-box {
+  background: #debf3363;                   /* Светло-жёлтая полупрозрачная подложка */
+  border-radius: 20px;                     /* Мягкие края */
+  padding: 8px 10px;                       /* Пространство вокруг текста */
+  display: flex;
+  flex-direction: column;
+  align-items: center;            /* центрируем по ширине */
+  flex: 1;                /* занимает всё оставшееся место */
+  justify-content: center;
+  height: 100%;          /* растягиваем подложку под текст на всю высоту */
+  min-height: 60px;
+  min-width: 0;           /* разрешаем ужиматься */
+  box-shadow: inset 0 0 0 rgba(0,0,0,0.06); /* Едва заметная внутренняя тень */
+  box-sizing: border-box;
+  overflow: hidden;       /* чтобы не вылазил текст */
+    text-align: center;
+}
+
+.info-box div {
+  width: 100%;
+  text-align: center;
+    margin-top: -10px;     /* 🟢 Отодвигаем от текста выше */
+  margin-bottom: 15px;  /* 🟢 Не даём прилипать к низу */
+}
+
+/* Подложка под текст (внутри info-box) */
+.info-box div:first-child {
+  font-size: 20px;
+  color: #1d47a1;                          /* Синий */
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 6px;
+}
+
+/* Таймер внутри подложки */
+.info-box div:first-child {
+  font-size: 20px;
+  color: #1d47a1;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 6px;
+  margin-top: 15px; /* 🟢 Опускаем чуть ниже */
+}
+
+/* Стили для кнопки */
+.collect-btn {
+  background: linear-gradient(to bottom, #8fff06, #43b40f); /* 💚 Сочный зелёный градиент */
+  color: #fff;
+  font-weight: bold;
+  border: 2px solid #3983137a;
+  border-radius: 20px;
+  padding: 7px 18px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: -10px;     /* 🟢 Отодвигаем от текста выше */
+  margin-bottom: 15px;  /* 🟢 Не даём прилипать к низу */
+  z-index: 5;
+  box-shadow:
+    inset 0 2px 4px rgba(255,255,255,0.4), /* 💡 Блик сверху */
+    inset 0 -2px 4px rgba(0,0,0,0.2),      /* 🔽 Тень снизу */
+    0 4px 8px rgba(0,0,0,0.25);            /* 🟢 Выпуклая тень */
+  transition: transform 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
+}
+
+.collect-btn:hover {
+  background: linear-gradient(to bottom, #b6ee7c, #66c249);
+  transform: scale(1.03);
+}
+
+.collect-btn:active {
+  transform: scale(0.97);
+  box-shadow:
+    inset 0 1px 3px rgba(0,0,0,0.3),
+    0 2px 4px rgba(0,0,0,0.2);
+}
+
+@keyframes zoomFadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

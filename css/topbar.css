@@ -1,0 +1,52 @@
+.top-bar {
+  background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.418), rgba(0, 0, 0, 0.428));
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(2px);
+  color: #1c334a;
+  padding: 10px 16px;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 14px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1), 0 0 8px rgba(255, 255, 255, 0.4);
+  border-bottom: none;
+  border-radius: 0 0 16px 16px;
+}
+
+
+.top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.top-row .money {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.top-row > div {
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+}
+
+.level,
+.money,
+.gems {
+  margin-right: 10px;
+}
+
+.xp-bar {
+  height: 6px;
+  background-color: rgba(168, 113, 31, 0.602);
+  border-radius: 4px;
+  margin-top: 6px;
+  overflow: hidden;
+}
+
+.xp-fill {
+  height: 100%;
+  background: linear-gradient(to right, #2ed655, #15ff00);
+  width: 0;
+  transition: width 0.4s ease;
+}

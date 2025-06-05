@@ -1,0 +1,14 @@
+/* 🎭 Стили актёров */
+.actors-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 10px;
+}
+.actor-card {
+  background: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  flex: 1 1 45%;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}

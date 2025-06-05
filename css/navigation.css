@@ -1,0 +1,10 @@
+.bottom-nav {
+  position: relative;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #3498db;
+  padding: 40px 0;
+  border-top: 2px solid #fff;
+}
