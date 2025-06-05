@@ -1,4 +1,3 @@
-// server.js
 const WebSocket = require('ws');
 const PORT = process.env.PORT || 3000;
 
@@ -13,7 +12,6 @@ wss.on('connection', (ws) => {
     try {
       const data = JSON.parse(message);
       if (data.type === 'hello') {
-        // Рассылаем всем, что новый игрок присоединился
         broadcast({
           type: 'playerJoined',
           nickname: data.nickname,
